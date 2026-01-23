@@ -44,12 +44,12 @@ export function Header({ currentPage, setCurrentPage }: { currentPage: Page; set
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between pl-0 pr-4 items-center h-20">
           <button 
             onClick={() => handleNavClick('home')} 
             className="flex items-center gap-3 group"
           >
-            <div className="h-20 w-auto p-2 flex items-center justify-center">
+            <div className="h-20 p-2 flex items-center justify-center">
               <img src={wcrest} alt="Lambda Phi Epsilon Crest" className="w-full h-full object-contain" />
             </div>
             <div className="hidden sm:block">
@@ -193,13 +193,13 @@ export function Header({ currentPage, setCurrentPage }: { currentPage: Page; set
                           All Brothers
                         </button>
                         <button
-                          onClick={() => handleNavClick('executives')}
+                          onClick={() => handleNavClick('coming')}
                           className="block w-full text-left px-4 py-2 text-white hover:bg-[#172841] transition-all text-sm"
                         >
                           Executive Board
                         </button>
                         <button
-                          onClick={() => handleNavClick('alumni')}
+                          onClick={() => handleNavClick('coming')}
                           className="block w-full text-left px-4 py-2 text-white hover:bg-[#172841] transition-all text-sm"
                         >
                           Alumni
