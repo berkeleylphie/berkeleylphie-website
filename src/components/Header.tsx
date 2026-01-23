@@ -243,7 +243,7 @@ export function Header({ currentPage, setCurrentPage }: { currentPage: Page; set
                 </>
               ) : (
                 <button
-                  onClick={() => handleNavClick('login')}
+                  onClick={() => handleNavClick('coming')}
                   className={`w-full px-4 py-3 text-left hover:bg-[#172841] ${
                     currentPage === 'login'
                       ? 'bg-white text-[#0a0a0f]'
