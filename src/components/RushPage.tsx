@@ -21,7 +21,7 @@ const rushEvents: RushEvent[] = [
     title: 'MEET THE BROS',
     date: 'Thursday, January 22',
     time: '9:00 PM - 11:00 PM',
-    location: 'Chapter House',
+    location: '2415 Fulton St',
     description: 'Come meet our brothers. Learn about who we are. After party with Berkeley Sigmas',
     attire: 'Casual'
   },
@@ -30,16 +30,16 @@ const rushEvents: RushEvent[] = [
     title: 'HOUSE BBQ',
     date: 'Saturday, January 24',
     time: '5:00 PM - 9:00 PM',
-    location: 'Chapter House',
+    location: '2415 Fulton St',
     description: 'Games, food, and brotherhood.',
     attire: 'Casual'
   },
   {
     id: 3,
-    title: 'TACO TUESDAY',
+    title: 'TACO TUESDAY *Invite Only*',
     date: 'Tuesday, January 27',
     time: '9:00 PM - 11:00 PM',
-    location: 'Chapter House',
+    location: '2415 Fulton St',
     description: 'Tacos and mingling with brothers and Berkeley Sigmas',
     attire: 'Casual'
   },
@@ -48,16 +48,16 @@ const rushEvents: RushEvent[] = [
     title: 'INFO NIGHT',
     date: 'Wednesday, January 28',
     time: '9:00 pm - 11:00 PM',
-    location: 'Chapter House',
+    location: '2415 Fulton St',
     description: 'Learn the history and values of Lambda Phi Epsilon. After party with Berkeley SOPi',
-    attire: 'Smart Casual'
+    attire: 'Casual'
   },
   {
     id: 5,
-    title: 'SOCIAL NIGHT',
+    title: 'SOCIAL NIGHT *Invite Only*',
     date: 'Thursday, January 29',
     time: '9:00 PM - 11:00 PM',
-    location: 'Chapter House',
+    location: '2415 Fulton St',
     description: 'Last chance before interviews. Joined by Berkeley aKDPhi',
     attire: 'Casual'
   },
@@ -66,7 +66,7 @@ const rushEvents: RushEvent[] = [
     title: 'RUSH PARTY',
     date: 'Friday, January 30',
     time: '10:00 PM',
-    location: 'Chapter House',
+    location: '2415 Fulton St',
     description: ' ',
     attire: 'Casual'
   },
@@ -169,14 +169,14 @@ export function RushPage() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="order-2 lg:order-1">
-              <div className="aspect-video relative overflow-hidden">
-                <iframe
-                  src="https://www.youtube.com/embed/rushvideo"
-                  title="Rush Video"
-                  className="absolute inset-0 w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+            <div className="aspect-video relative overflow-hidden">
+              <iframe
+              src="https://www.instagram.com/reel/DTwFVxWEuMy/embed"
+              title="Instagram Reel"
+              className="absolute inset-0 w-full h-full"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+              allowFullScreen
+              />
               </div>
             </div>
             <div className="relative">
