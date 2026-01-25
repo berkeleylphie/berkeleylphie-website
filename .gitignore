@@ -1,2 +1,8 @@
 node_modules
 .cache
+
+# dependencies
+node_modules/
+
+# vite cache
+node_modules/.vite/
