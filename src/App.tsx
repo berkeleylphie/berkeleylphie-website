@@ -1,15 +1,18 @@
+// The heart of the site: decides which page is shown and wraps every page
+// with the Header (top menu) and Footer. To add a whole new page, import it here,
+// add its name to the Page list, and add a case for it in renderPage below.
 import { useState, createContext, useContext, useEffect } from 'react';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-import { HomePage } from './components/HomePage';
-import { AboutPage } from './components/AboutPage';
-import { BrothersPage } from './components/BrothersPage';
-import { ExecutiveBoardPage } from './components/ExecutiveBoardPage';
-import { AlumniPage } from './components/AlumniPage';
-import { RushPage } from './components/RushPage';
-import { LoginPage } from './components/LoginPage';
-import { ProtectedContent } from './components/ProtectedContent';
-import { ComingSoonPage } from './components/ComingSoonPage';
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { BrothersPage } from './pages/BrothersPage';
+import { ExecutiveBoardPage } from './pages/ExecutiveBoardPage';
+import { AlumniPage } from './pages/AlumniPage';
+import { RushPage } from './pages/RushPage';
+import { LoginPage } from './pages/LoginPage';
+import { ProtectedContent } from './pages/ProtectedContent';
+import { ComingSoonPage } from './pages/ComingSoonPage';
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -70,7 +73,7 @@ export default function App() {
         case 'login':
           return <LoginPage />;
         case 'coming':
-          return <ComingSoonPage setCurrentPage={setCurrentPage} />;
+          return <ComingSoonPage />;
       case 'protected':
         return isAuthenticated ? <ProtectedContent /> : <LoginPage />;
       default:
@@ -80,7 +83,7 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      <div className="min-h-screen bg-[#0a0a0f]">
+      <div className="min-h-screen bg-background">
         <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
         <main>
           {renderPage()}
