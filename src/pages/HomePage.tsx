@@ -82,7 +82,7 @@ export function HomePage({ currentPage, setCurrentPage }: { currentPage: Page; s
               <div className="text-white text-sm tracking-wider mt-1">YEARS LEGACY</div>
             </div>
             <div className="border-r border-white/20 last:border-r-0">
-              <div className="text-4xl font-black text-off-white">#1+</div>
+              <div className="text-4xl font-black text-off-white">#1</div>
               <div className="text-white text-sm tracking-wider mt-1">ASIAN-INTEREST</div>
             </div>
             <div>
