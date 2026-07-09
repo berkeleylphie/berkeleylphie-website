@@ -82,7 +82,7 @@ export function Footer({ setCurrentPage }: { setCurrentPage: (page: Page) => voi
                 </div>
                 <div>
                   <div className="text-xs text-white">Rush Inquiries</div>
-                  <div className="text-xs">SP25 Interest Form</div>
+                  <div className="text-xs">FA26 Interest Form</div>
                 </div>
               </a>
               
