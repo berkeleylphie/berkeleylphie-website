@@ -19,11 +19,11 @@ interface ResourceLink {
 }
 
 const upcomingEvents: UpcomingEvent[] = [
-  { id: 1, title: 'Chapter Meeting', date: 'February 3', time: '7:00 PM', type: 'Meeting' },
-  { id: 2, title: 'Brotherhood Dinner', date: 'February 7', time: '6:30 PM', type: 'Social' },
-  { id: 3, title: 'Community Service: Food Bank', date: 'February 10', time: '10:00 AM', type: 'Service' },
-  { id: 4, title: 'Alumni Networking Event', date: 'February 14', time: '5:00 PM', type: 'Professional' },
-  { id: 5, title: 'Intramural Basketball Game', date: 'February 16', time: '8:00 PM', type: 'Sports' },
+  { id: 1, title: 'Chapter Meeting', date: 'TBD', time: 'TBD', type: 'Meeting' },
+  { id: 2, title: 'Brotherhood Dinner', date: 'TBD', time: 'TBD', type: 'Social' },
+  { id: 3, title: 'Community Service: Food Bank', date: 'TBD', time: 'TBD', type: 'Service' },
+  { id: 4, title: 'Alumni Networking Event', date: 'TBD', time: 'TBD', type: 'Professional' },
+  { id: 5, title: 'Intramural Basketball Game', date: 'TBD', time: 'TBD', type: 'Sports' },
 ];
 
 const resourceLinks: ResourceLink[] = [

@@ -1,5 +1,6 @@
-// The About Us page: chapter history timeline and the four pillars.
-// To edit history entries, change `timelineEvents` below; the pillar cards are in `pillars`.
+// The About Us page: chapter history timeline, career destinations, and the four pillars.
+// To edit history entries, change `timelineEvents` below; destinations/logos are at the top;
+// the pillar cards are in `pillars`.
 
 import { Calendar, MapPin, Award, Target } from 'lucide-react';
 import { ImageWithFallback } from '../ImageWithFallback';
@@ -10,8 +11,50 @@ import achievement from '../images/achievement.png';
 import brotherhood from '../images/brotherhood.png';
 import service from '../images/service.png';
 import culture from '../images/culture.png';
+import logoOppenheimer from '../images/logos/Oppenheimer.jpeg';
+import logoCantor from '../images/logos/CantorFitzgerald.png';
+import logoAres from '../images/logos/AresManagement.png';
+import logoBlackRock from '../images/logos/BlackRock.png';
+import logoAmazon from '../images/logos/Amazon.png';
+import logoCitadel from '../images/logos/Citadel.png';
+import logoUBS from '../images/logos/UBS.png';
+import logoSVYP from '../images/logos/SVYP.jpeg';
+import logoAP0110 from '../images/logos/AP0110.png';
+import logoTurner from '../images/logos/TurnerConstruction.webp';
+import logoWebcor from '../images/logos/WebcorConstruction.png';
+import logoAssaAbloy from '../images/logos/AssaAbloy.png';
+import logoGarney from '../images/logos/GarneyConstruction.jpg';
+import logoGeneralMatter from '../images/logos/GeneralMatter.png';
+import logoFlexibleAssembly from '../images/logos/FlexibleAssemblySystems.png';
+import logoLiveX from '../images/logos/LiveXAI.webp';
+import logoCouncilCapital from '../images/logos/CouncilCapital.jpeg';
 
 type Page = 'home' | 'about' | 'brothers' | 'executives' | 'alumni' | 'rush' | 'login' | 'protected';
+
+// Destinations for the "Where We Go" section.
+// Logo files live in src/images/logos/. To add another:
+//   1. Drop the file there (no spaces in the filename)
+//   2. Import it above with a camelCase name
+//   3. Add { name: 'Company', logo: importedName } below
+const destinations: { name: string; logo?: string }[] = [
+  { name: 'Oppenheimer & Co.', logo: logoOppenheimer },
+  { name: 'Cantor Fitzgerald', logo: logoCantor },
+  { name: 'Ares Management', logo: logoAres },
+  { name: 'BlackRock', logo: logoBlackRock },
+  { name: 'Amazon', logo: logoAmazon },
+  { name: 'Citadel', logo: logoCitadel },
+  { name: 'UBS', logo: logoUBS },
+  { name: 'SVYP', logo: logoSVYP },
+  { name: 'AP0110', logo: logoAP0110 },
+  { name: 'Turner Construction', logo: logoTurner },
+  { name: 'Webcor Construction', logo: logoWebcor },
+  { name: 'Assa Abloy', logo: logoAssaAbloy },
+  { name: 'Garney Construction', logo: logoGarney },
+  { name: 'General Matter', logo: logoGeneralMatter },
+  { name: 'Flexible Assembly Systems', logo: logoFlexibleAssembly },
+  { name: 'LiveX AI', logo: logoLiveX },
+  { name: 'Council Capital', logo: logoCouncilCapital },
+];
 
 export function AboutPage({ setCurrentPage }: { setCurrentPage: (page: Page) => void }) {
   const [activeTimelineItem, setActiveTimelineItem] = useState<number | null>(null);
@@ -239,6 +282,44 @@ export function AboutPage({ setCurrentPage }: { setCurrentPage: (page: Page) => 
           </div>
         </div>
       </section>
+
+      {/* Where We Go — alumni career destinations (see `destinations` at top of file) */}
+      {destinations.length > 0 && (
+        <section className="py-16 bg-background texture-noise relative overflow-hidden">
+          <div className="max-w-5xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-10">
+              <div className="inline-block px-3 py-1 bg-off-white mb-3">
+                <span className="text-background text-xs tracking-widest">AFTER BERKELEY</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl text-white mb-3">WHERE WE GO</h2>
+              <p className="text-sm text-muted max-w-2xl mx-auto">
+                Brothers across tech, finance, consulting, healthcare, and beyond
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {destinations.map((company) => (
+                <div
+                  key={company.name}
+                  className="aspect-[5/3] bg-off-white flex items-center justify-center px-5 py-4 transition-transform duration-300 hover:scale-[1.02]"
+                >
+                  {company.logo ? (
+                    <ImageWithFallback
+                      src={company.logo}
+                      alt={company.name}
+                      className="max-h-11 md:max-h-12 w-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-sm text-background/70 tracking-wide text-center leading-snug">
+                      {company.name}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

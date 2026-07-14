@@ -22,8 +22,8 @@ const rushEvents: RushEvent[] = [
   {
     id: 1,
     title: 'MEET THE BROS',
-    date: 'Thursday, January 22',
-    time: '9:00 PM - 11:00 PM',
+    date: 'TBD',
+    time: 'TBD',
     location: '2415 Fulton St',
     description: 'Come meet our brothers. Learn about who we are. After party with Berkeley Sigmas',
     attire: 'Casual'
@@ -31,8 +31,8 @@ const rushEvents: RushEvent[] = [
   {
     id: 2,
     title: 'HOUSE BBQ',
-    date: 'Saturday, January 24',
-    time: '5:00 PM - 9:00 PM',
+    date: 'TBD',
+    time: 'TBD',
     location: '2415 Fulton St',
     description: 'Games, food, and brotherhood.',
     attire: 'Casual'
@@ -40,8 +40,8 @@ const rushEvents: RushEvent[] = [
   {
     id: 3,
     title: 'TACO TUESDAY *Invite Only*',
-    date: 'Tuesday, January 27',
-    time: '9:00 PM - 11:00 PM',
+    date: 'TBD',
+    time: 'TBD',
     location: '2415 Fulton St',
     description: 'Tacos and mingling with brothers and Berkeley Sigmas',
     attire: 'Casual'
@@ -49,8 +49,8 @@ const rushEvents: RushEvent[] = [
   {
     id: 4,
     title: 'INFO NIGHT',
-    date: 'Wednesday, January 28',
-    time: '9:00 pm - 11:00 PM',
+    date: 'TBD',
+    time: 'TBD',
     location: '2415 Fulton St',
     description: 'Learn the history and values of Lambda Phi Epsilon. After party with Berkeley SOPi',
     attire: 'Casual'
@@ -58,8 +58,8 @@ const rushEvents: RushEvent[] = [
   {
     id: 5,
     title: 'SOCIAL NIGHT *Invite Only*',
-    date: 'Thursday, January 29',
-    time: '9:00 PM - 11:00 PM',
+    date: 'TBD',
+    time: 'TBD',
     location: '2415 Fulton St',
     description: 'Last chance before interviews. Joined by Berkeley aKDPhi',
     attire: 'Casual'
@@ -67,8 +67,8 @@ const rushEvents: RushEvent[] = [
   {
     id: 6,
     title: 'RUSH PARTY',
-    date: 'Friday, January 30',
-    time: '10:00 PM',
+    date: 'TBD',
+    time: 'TBD',
     location: '2415 Fulton St',
     description: ' ',
     attire: 'Casual'
@@ -116,7 +116,7 @@ export function RushPage() {
         
         <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
           <div className="inline-block px-4 py-1.5 bg-off-white mb-4">
-            <span className="text-background text-xs tracking-widest">SPRING 2025 RUSH</span>
+            <span className="text-background text-xs tracking-widest">FALL 2026 RUSH</span>
           </div>
           <h1 className="text-5xl md:text-6xl text-white mb-4">
             JOIN THE BROTHERHOOD
@@ -132,7 +132,7 @@ export function RushPage() {
         
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-5xl text-white mb-4">SPRING 2025 SCHEDULE</h2>
+            <h2 className="text-5xl text-white mb-4">FALL 2026 SCHEDULE</h2>
           </div>
 
           <div className="space-y-4">
@@ -205,7 +205,7 @@ export function RushPage() {
               <button 
                 onClick={() => window.open('https://forms.gle/3qW7TMq2B86cZ8b26')}
                 className="mt-5 px-6 py-2.5 glass-gold border-rough border-off-white text-white hover:bg-off-white hover:text-background transition-all">
-                SP25 Interest Form
+                FA26 Interest Form
               </button>
             </div>
           </div>
@@ -224,7 +224,7 @@ export function RushPage() {
               { q: 'WHAT IS RUSH?', a: 'Rush is a period at the beginning of the semester where interested students can come to our events to meet the brothers and learn more about the fraternity.' },
               { q: 'AFTER RUSH?', a: 'Selected candidates receive bids to join our associate member program.' },
               { q: 'IS LAMBDA PHI EPSILON A HAZING-FREE ORGANIZATION?', a: 'Absolutely. Lambda Phi Epsilon has a strict anti-hazing policy. Our pledging process is designed to build brotherhood, leadership, and personal growth in a safe and supportive environment.' },
-              { q: 'QUESTIONS?', a: 'Our rush chairs are here to help tayler@berkeley.edu, rush@lambdaphiepsilon.berkeley.edu. Click here to access the SP25 Interest Form.' },
+              { q: 'QUESTIONS?', a: 'Our rush chairs are here to help andrewyoon@berkeley.edu, tyler.ichihara@berkeley.edu. Click here to access the FA26 Interest Form.' },
             ].map((item, i) => (
               <div key={i} className="p-6 bg-surface border-l-4 border-off-white hover:bg-navy-light">
                 <h3 className="text-xl text-white mb-2">{item.q}</h3>
