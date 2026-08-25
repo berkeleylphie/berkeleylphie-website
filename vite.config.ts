@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 export default defineConfig({
-  base: '/berkeleylphie-website/',
+  base: '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -14,6 +14,14 @@ export default defineConfig({
   build: {
     target: 'esnext',
     outDir: 'build',
+    rollupOptions: {
+      // 404.html is a second build entry (not just a public/ passthrough)
+      // so Vite substitutes %BASE_URL% into it too — see 404.html for why.
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        notFound: path.resolve(__dirname, '404.html'),
+      },
+    },
   },
   server: {
     port: 3000,

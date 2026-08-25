@@ -6,3 +6,8 @@ node_modules/
 
 # vite cache
 node_modules/.vite/
+
+# environment variables (contains Supabase project keys)
+.env
+.env.local
+.env.*.local

@@ -11,9 +11,7 @@ import brotherhood from '../images/brotherhood.png';
 import service from '../images/service.png';
 import culture from '../images/culture.png';
 
-type Page = 'home' | 'about' | 'brothers' | 'executives' | 'alumni' | 'rush' | 'login' | 'protected';
-
-export function AboutPage({ setCurrentPage }: { setCurrentPage: (page: Page) => void }) {
+export function AboutPage() {
   const [activeTimelineItem, setActiveTimelineItem] = useState<number | null>(null);
 
   const timelineEvents = [
@@ -121,7 +119,7 @@ export function AboutPage({ setCurrentPage }: { setCurrentPage: (page: Page) => 
                   { icon: Award, label: 'Recognition', value: '#1 Asian-Interest' },
                   { icon: Target, label: 'Network', value: '400+ Alumni' },
                 ].map((item) => (
-                  <div key={item.label} className="p-3 bg-navy border-rough border-off-white/30">
+                  <div key={item.label} className="p-3 bg-navy border-rough border-off-white/30 hover:border-off-white transition-all">
                     <item.icon className="w-5 h-5 text-off-white mb-1.5" />
                     <div className="text-xs text-muted mb-0.5">{item.label}</div>
                     <div className="text-white text-sm">{item.value}</div>

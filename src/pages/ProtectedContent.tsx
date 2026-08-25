@@ -1,7 +1,8 @@
 // The brothers-only portal shown after logging in: events, announcements, resource links.
 // Edit the `upcomingEvents` and `resourceLinks` lists below to change its content.
 
-import { FileText, Calendar, Bell, ExternalLink } from 'lucide-react';
+import { FileText, Calendar, Bell, ExternalLink, UserCog } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface UpcomingEvent {
   id: number;
@@ -36,6 +37,8 @@ const resourceLinks: ResourceLink[] = [
 ];
 
 export function ProtectedContent() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-background pt-20">
       {/* Header */}
@@ -43,13 +46,24 @@ export function ProtectedContent() {
         {/* Liquid blobs */}
         <div className="liquid-blob liquid-blob-gold w-96 h-96 top-0 left-1/4"></div>
         <div className="liquid-blob liquid-blob-gold w-64 h-64 bottom-0 right-1/4"></div>
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="inline-block px-4 py-1 bg-off-white mb-4">
-            <span className="text-background text-sm tracking-widest">WELCOME BACK</span>
+          <div className="flex items-start justify-between gap-4 flex-wrap">
+            <div>
+              <div className="inline-block px-4 py-1 bg-off-white mb-4">
+                <span className="text-background text-sm tracking-widest">WELCOME BACK</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl text-white mb-4">BROTHERS PORTAL</h1>
+              <p className="text-xl text-white/80">Access chapter resources and stay updated</p>
+            </div>
+            <button
+              onClick={() => navigate('/profile')}
+              className="flex items-center gap-2 px-5 py-3 bg-off-white text-background hover:bg-silver transition-all shrink-0"
+            >
+              <UserCog className="w-4 h-4" />
+              EDIT PROFILE
+            </button>
           </div>
-          <h1 className="text-5xl md:text-6xl text-white mb-4">BROTHERS PORTAL</h1>
-          <p className="text-xl text-white/80">Access chapter resources and stay updated</p>
         </div>
       </section>
 

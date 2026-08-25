@@ -11,6 +11,19 @@
 
     <body>
       <div id="root"></div>
+      <script type="text/javascript">
+        // Restores the real path encoded by 404.html (see that file)
+        // before React Router mounts, so direct loads/refreshes of any
+        // route work on GitHub Pages' static hosting.
+        (function (l) {
+          if (l.search[1] === '/') {
+            var decoded = l.search.slice(1).split('&').map(function (s) {
+              return s.replace(/~and~/g, '&');
+            }).join('?');
+            window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash);
+          }
+        })(window.location);
+      </script>
       <script type="module" src="/src/main.tsx"></script>
     </body>
   </html>

@@ -1,14 +1,16 @@
-// The Brothers page: the grid of active brothers. To add/remove a brother,
-// edit the centralized list in src/people.ts (not this file).
+// The Brothers page: the grid of active brothers, sourced from Supabase via
+// MembersContext. To add/remove a brother, change their `status` in the
+// `member_profiles` table (not this file).
 
 import { ImageWithFallback } from '../ImageWithFallback';
 import { PersonCard } from '../PersonCard';
-import { people } from '../people';
+import { DirectoryStatus } from '../DirectoryStatus';
+import { useMembers } from '../MembersContext';
 import brotherhero from '../images/brothershero2.png';
 
-const brothers = people.filter((person) => person.category === 'brother');
-
 export function BrothersPage() {
+  const { brothers, loading, error } = useMembers();
+
   return (
     <div className="bg-background pt-20">
       {/* Hero with Image */}
@@ -37,11 +39,14 @@ export function BrothersPage() {
             <h2 className="text-3xl text-white">ACTIVE BROTHERS</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {brothers.map((brother) => (
-              <PersonCard key={brother.id} person={brother} />
-            ))}
-          </div>
+          <DirectoryStatus loading={loading} error={error} />
+          {!loading && !error && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {brothers.map((brother) => (
+                <PersonCard key={brother.id} person={brother} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

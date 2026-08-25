@@ -2,6 +2,7 @@
 // The gallery photos are imported at the top and listed in `photoGallery` below.
 
 import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { ImageWithFallback } from '../ImageWithFallback';
 import homehero from '../images/homehero.jpg';
 import home11 from '../images/1.1home.png';
@@ -13,12 +14,8 @@ import home22 from '../images/2.2home.jpg';
 import home23 from '../images/2.3home.jpeg';
 import home24 from '../images/2.4home.png';
 
-
-type Page = 'home' | 'about' | 'brothers' | 'executives' | 'alumni' | 'rush' | 'login' | 'protected';
-
-
-export function HomePage({ currentPage, setCurrentPage }: { currentPage: Page; setCurrentPage: (page: Page) => void })
-{
+export function HomePage() {
+  const navigate = useNavigate();
   const photoGallery = [home11, home12, home13, home14, home21, home22, home23, home24];
 
   return (
@@ -47,19 +44,19 @@ export function HomePage({ currentPage, setCurrentPage }: { currentPage: Page; s
               To be Leaders Among Men
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <button 
-                onClick={() => setCurrentPage('rush')}
+              <button
+                onClick={() => navigate('/rush')}
                 className="px-6 py-3 bg-off-white text-background hover:bg-silver transition-all flex items-center gap-2">
                 Rush ΛΦΕ
                 <ArrowRight className="w-4 h-4" />
               </button>
-              
-              <button 
-                onClick={() => setCurrentPage('about')}
+
+              <button
+                onClick={() => navigate('/about')}
                 className="px-6 py-3 glass-gold text-white border-rough border-off-white/50 hover:border-off-white transition-all">
                 About Us
               </button>
-              
+
             </div>
           </div>
         </div>
@@ -82,7 +79,7 @@ export function HomePage({ currentPage, setCurrentPage }: { currentPage: Page; s
               <div className="text-white text-sm tracking-wider mt-1">YEARS LEGACY</div>
             </div>
             <div className="border-r border-white/20 last:border-r-0">
-              <div className="text-4xl font-black text-off-white">#1+</div>
+              <div className="text-4xl font-black text-off-white">#1</div>
               <div className="text-white text-sm tracking-wider mt-1">ASIAN-INTEREST</div>
             </div>
             <div>
@@ -222,8 +219,8 @@ export function HomePage({ currentPage, setCurrentPage }: { currentPage: Page; s
           <p className="text-lg text-white/80 mb-6">
             Rush is your opportunity to discover what Lambda Phi Epsilon is all about.
           </p>
-          <button 
-            onClick={() => setCurrentPage('rush')}
+          <button
+            onClick={() => navigate('/rush')}
             className="px-8 py-3 bg-off-white text-background hover:bg-silver transition-all">
             RUSH INFO
           </button>

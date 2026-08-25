@@ -1,11 +1,10 @@
 // The footer at the bottom of every page: quick links, contact info, and social links.
 
 import { Mail, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import wcrest from './images/wcrest.png';
 
-type Page = 'home' | 'about' | 'brothers' | 'executives' | 'alumni' | 'rush' | 'login' | 'protected';
-
-export function Footer({ setCurrentPage }: { setCurrentPage: (page: Page) => void }) {
+export function Footer() {
   return (
     <footer className="bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 py-10 relative z-10">
@@ -34,30 +33,30 @@ export function Footer({ setCurrentPage }: { setCurrentPage: (page: Page) => voi
           <div>
             <h3 className="text-white mb-3 border-b-2 border-white pb-2 inline-block">QUICK LINKS</h3>
             <div className="space-y-1.5">
-              <button
-                onClick={() => setCurrentPage('about')}
+              <Link
+                to="/about"
                 className="block text-muted hover:text-white transition-colors text-sm"
               >
                 About Us
-              </button>
-              <button
-                onClick={() => setCurrentPage('executives')}
+              </Link>
+              <Link
+                to="/executives"
                 className="block text-muted hover:text-white transition-colors text-sm"
               >
                 Executive Board
-              </button>
-              <button
-                onClick={() => setCurrentPage('alumni')}
+              </Link>
+              <Link
+                to="/alumni"
                 className="block text-muted hover:text-white transition-colors text-sm"
               >
                 Alumni Network
-              </button>
-              <button
-                onClick={() => setCurrentPage('rush')}
+              </Link>
+              <Link
+                to="/rush"
                 className="block text-muted hover:text-white transition-colors text-sm"
               >
                 Rush Information
-              </button>
+              </Link>
               <a
                 href="https://www.lambdaphiepsilon.com"
                 target="_blank"
@@ -74,7 +73,7 @@ export function Footer({ setCurrentPage }: { setCurrentPage: (page: Page) => voi
             <h3 className="text-white mb-3 border-b-2 border-white pb-2 inline-block">CONTACT US</h3>
             <div className="space-y-2.5">
               <a
-                href="https://forms.gle/3qW7TMq2B86cZ8b26"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfdbHGs9TftPR3ztGLettJwGVrl5VwOD_1k54VtCdde33FFmg/viewform"
                 className="flex items-center gap-2.5 text-muted hover:text-white transition-colors group"
               >
                 <div className="w-7 h-7 bg-navy flex items-center justify-center border-rough border-white/30 group-hover:border-white transition-all">
@@ -82,12 +81,12 @@ export function Footer({ setCurrentPage }: { setCurrentPage: (page: Page) => voi
                 </div>
                 <div>
                   <div className="text-xs text-white">Rush Inquiries</div>
-                  <div className="text-xs">SP25 Interest Form</div>
+                  <div className="text-xs">FA26 Interest Form</div>
                 </div>
               </a>
-              
+
               <a
-                href="mailto:contact@lambdaphiepsilon-berkeley.org"
+                href="mailto:lphieberkeley@gmail.com"
                 className="flex items-center gap-2.5 text-muted hover:text-white transition-colors group"
               >
                 <div className="w-7 h-7 bg-navy flex items-center justify-center border-rough border-white/30 group-hover:border-white transition-all">
@@ -95,7 +94,7 @@ export function Footer({ setCurrentPage }: { setCurrentPage: (page: Page) => voi
                 </div>
                 <div>
                   <div className="text-xs text-white">General Contact</div>
-                  <div className="text-xs">contact@lpe-berkeley.org</div>
+                  <div className="text-xs">lphieberkeley@gmail.com</div>
                 </div>
               </a>
 
