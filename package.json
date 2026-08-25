@@ -3,22 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.3",
     "lucide-react": "^0.487.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.2",
     "@types/node": "^20.10.0",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react-swc": "^3.10.2",
     "gh-pages": "^6.3.0",
     "tailwindcss": "^4.3.2",
+    "typescript": "^7.0.2",
     "vite": "^6.4.3"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "deploy": "gh-pages -d build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   }
 }

@@ -1,17 +1,19 @@
-// The Alumni page (currently hidden from the menu — see Header.tsx). To
-// add/remove an alumnus, edit the centralized list in src/people.ts (not
-// this file). The search/filter logic is further down.
+// The Alumni page (currently hidden from the menu — see Header.tsx), sourced
+// from Supabase via MembersContext. A brother becomes an alumnus by having
+// their `status` changed to 'alumni' in `member_profiles` — nothing to edit
+// here. The search/filter logic is further down.
 
 import { ImageWithFallback } from '../ImageWithFallback';
 import { PersonCard } from '../PersonCard';
-import { people } from '../people';
+import { DirectoryStatus } from '../DirectoryStatus';
+import { useMembers } from '../MembersContext';
 import { useState, useMemo } from 'react';
-
-const allAlumni = people.filter((person) => person.category === 'alumni');
+import alumnihero from '../images/alumnihero.png';
 
 const ITEMS_PER_PAGE = 20;
 
 export function AlumniPage() {
+  const { alumni: allAlumni, loading, error } = useMembers();
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -26,9 +28,10 @@ export function AlumniPage() {
       (alumnus.company ?? '').toLowerCase().includes(query) ||
       alumnus.major.toLowerCase().includes(query) ||
       alumnus.hometown.toLowerCase().includes(query) ||
+      (alumnus.gradYear ?? '').includes(query) ||
       alumnus.year.includes(query)
     );
-  }, [searchQuery]);
+  }, [searchQuery, allAlumni]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredAlumni.length / ITEMS_PER_PAGE);
@@ -82,7 +85,7 @@ export function AlumniPage() {
       {/* Hero with Image */}
       <section className="relative h-[60vh]">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1743327572772-eca3c63b029e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080&q=80"
+          src={alumnihero}
           alt="Alumni"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -109,7 +112,7 @@ export function AlumniPage() {
                 placeholder="Search by name, company, role, major, location, or year..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="w-full px-5 py-3 bg-background border-rough border-off-white text-white text-sm placeholder-muted focus:outline-none focus:border-white"
+                className="w-full px-5 py-3 bg-background border-2 border-off-white/30 text-white text-sm placeholder-muted focus:outline-none focus:border-off-white transition-colors"
               />
               <div className="mt-2 text-center text-xs text-muted">
                 Showing {currentAlumni.length} of {filteredAlumni.length} alumni
@@ -119,7 +122,9 @@ export function AlumniPage() {
           </div>
 
           {/* Alumni Grid */}
-          {currentAlumni.length > 0 ? (
+          <DirectoryStatus loading={loading} error={error} />
+          {!loading && !error && (
+            currentAlumni.length > 0 ? (
             <>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
                 {currentAlumni.map((alumnus) => (
@@ -133,10 +138,10 @@ export function AlumniPage() {
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={`px-3 py-2 text-sm border-rough ${
+                    className={`px-3 py-2 text-sm border-2 transition-colors ${
                       currentPage === 1
-                        ? 'border-off-white/30 text-muted cursor-not-allowed'
-                        : 'border-off-white text-white hover:bg-navy'
+                        ? 'border-off-white/10 text-muted cursor-not-allowed'
+                        : 'border-off-white/30 text-white hover:border-off-white/60 hover:bg-navy'
                     }`}
                   >
                     Previous
@@ -147,10 +152,10 @@ export function AlumniPage() {
                       <button
                         key={index}
                         onClick={() => handlePageChange(page)}
-                        className={`px-3 py-2 text-sm border-rough ${
+                        className={`px-3 py-2 text-sm border-2 transition-colors ${
                           currentPage === page
                             ? 'bg-off-white text-background border-off-white'
-                            : 'border-off-white text-white hover:bg-navy'
+                            : 'border-off-white/30 text-white hover:border-off-white/60 hover:bg-navy'
                         }`}
                       >
                         {page}
@@ -165,10 +170,10 @@ export function AlumniPage() {
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className={`px-3 py-2 text-sm border-rough ${
+                    className={`px-3 py-2 text-sm border-2 transition-colors ${
                       currentPage === totalPages
-                        ? 'border-off-white/30 text-muted cursor-not-allowed'
-                        : 'border-off-white text-white hover:bg-navy'
+                        ? 'border-off-white/10 text-muted cursor-not-allowed'
+                        : 'border-off-white/30 text-white hover:border-off-white/60 hover:bg-navy'
                     }`}
                   >
                     Next
@@ -176,12 +181,13 @@ export function AlumniPage() {
                 </div>
               )}
             </>
-          ) : (
-            <div className="text-center py-16">
-              <div className="text-off-white text-5xl mb-3">∅</div>
-              <h3 className="text-xl text-white mb-2">No Alumni Found</h3>
-              <p className="text-muted text-sm">Try adjusting your search query</p>
-            </div>
+            ) : (
+              <div className="text-center py-16">
+                <div className="text-off-white text-5xl mb-3">∅</div>
+                <h3 className="text-xl text-white mb-2">No Alumni Found</h3>
+                <p className="text-muted text-sm">Try adjusting your search query</p>
+              </div>
+            )
           )}
         </div>
       </section>
