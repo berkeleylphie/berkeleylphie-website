@@ -1,7 +1,10 @@
-// The brothers-only login form (currently hidden from the menu — see Header.tsx).
-// Passwordless: the brother enters an allowlisted email and gets a magic
-// link. Non-members are rejected server-side by the Before User Created
-// Auth Hook (see supabase/migrations) — this page just surfaces that error.
+// The brothers-only login form (currently hidden from the menu — see
+// Header.tsx). Passwordless: the brother enters an allowlisted email and
+// gets a magic link. Non-members are rejected server-side by the Before
+// User Created Auth Hook (see supabase/migrations) — this page just
+// surfaces that error. Requires custom SMTP configured in Supabase (see
+// supabase/README.md) — Supabase's built-in email sender is capped at 2
+// emails/hour project-wide, which isn't usable for a real roster.
 
 import { useState } from 'react';
 import { useAuth } from '../App';
@@ -84,7 +87,8 @@ export function LoginPage() {
               <button
                 type="submit"
                 disabled={sending}
-                className="w-full px-6 py-3 bg-off-white text-background hover:bg-silver transition-all flex items-center justify-center gap-2 mx-auto"                           >
+                className="w-full px-6 py-3 bg-off-white text-background hover:bg-silver transition-all flex items-center justify-center gap-2 mx-auto"
+              >
                 {sending ? 'SENDING…' : 'SEND SIGN-IN LINK'}
               </button>
             </form>

@@ -105,6 +105,14 @@ export default function App() {
         emailRedirectTo: `${window.location.origin}${import.meta.env.BASE_URL}`,
       },
     });
+    // The allowlist-rejection error is otherwise a binary oracle: a
+    // non-member email fails visibly while a real one succeeds, letting
+    // anyone probe the login form to find out who's a member. Show the
+    // same "check your email" outcome either way; only surface genuinely
+    // unexpected errors.
+    if (error?.message.includes('not recognized as a member')) {
+      return { error: null };
+    }
     return { error: error?.message ?? null };
   };
 

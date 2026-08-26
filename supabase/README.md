@@ -30,26 +30,44 @@ select the `public.check_member_allowlist` function.
 This is what actually enforces the allowlist: signups are rejected unless a
 `member_accounts` row already exists for that email.
 
-## 3. Enable magic-link email sign-in
+## 3. Enable magic-link email sign-in + custom SMTP
 
 Dashboard → **Authentication → Providers → Email** → make sure Email is
 enabled. Password sign-in isn't used by this app (the frontend calls
 `signInWithOtp`, i.e. magic links), so no password policy config is needed.
 
+**Custom SMTP is not optional here.** Supabase's built-in email sender is
+hard-capped at **2 emails/hour, project-wide** — combined across every
+signup/recovery/magic-link request — and that limit can only be changed by
+configuring a custom SMTP provider; there's no setting or paid Supabase
+tier that raises it otherwise. With a real roster, you'll hit that within
+the first couple of sign-ins.
+
+We're using **Brevo** (free tier, no credit card, ~300 emails/day as of
+this writing — confirm the current number when you sign up):
+
+1. Sign up at brevo.com.
+2. Dashboard → **Settings → SMTP & API** → get your SMTP credentials (host,
+   port, login, password/key).
+3. Optional but recommended for deliverability: verify `berkeleylphie.net`
+   as a sending domain (Brevo gives you DNS records to add at your
+   registrar, same idea as the GitHub Pages A records).
+4. Supabase Dashboard → **Project Settings → Authentication → SMTP
+   Settings** → enable custom SMTP, paste in Brevo's host/port/username/
+   password, set a sender email (e.g. `noreply@berkeleylphie.net`) and
+   sender name (e.g. "Lambda Phi Epsilon"), save.
+
 ## 4. Set the Auth redirect URL
 
 Dashboard → **Authentication → URL Configuration**.
 
-Set **Site URL** and add a **Redirect URL** matching your deployed GitHub
-Pages URL, *including* the Vite base path from `vite.config.ts`:
+Set **Site URL** and add a **Redirect URL** matching your deployed site
+(`https://berkeleylphie.net/`, or your GitHub Pages URL including the Vite
+base path from `vite.config.ts` if not yet on the custom domain).
 
-```
-https://<your-github-username>.github.io/berkeleylphie-website/
-```
-
-A mismatch here is the most common way magic links silently fail — the link
-in the email will redirect somewhere the app isn't listening, or Supabase
-will refuse to redirect at all.
+A mismatch here is the most common way magic links silently fail — the
+link in the email will redirect somewhere the app isn't listening, or
+Supabase will refuse to redirect at all.
 
 For local development, also add `http://localhost:3000/` (or whatever
 `npm run dev` prints).
