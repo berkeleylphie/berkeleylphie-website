@@ -1,0 +1,35 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/crest.png" />
+      <title>Lambda Phi Epsilon | UC Berkeley</title>
+      <script type="text/javascript">
+        // GitHub Pages is a static host with no server-side rewrites, so a
+        // direct load or refresh on any route other than the site root
+        // 404s here (GH Pages always serves this file for unmatched
+        // paths). This encodes the real path into a query string and
+        // redirects back to index.html, which restores it (see the script
+        // there) before React Router mounts.
+        //
+        // / is substituted by Vite at build time to match
+        // vite.config.ts's `base` — this keeps working automatically
+        // whether the site is served from a GitHub Pages subpath or a
+        // custom domain at root.
+        // Adapted from https://github.com/rafgraph/spa-github-pages
+        var base = '/';
+        var l = window.location;
+        var pathAfterBase = l.pathname.indexOf(base) === 0
+          ? l.pathname.slice(base.length)
+          : l.pathname.replace(/^\//, '');
+        l.replace(
+          l.protocol + '//' + l.host + base + '?/' +
+          pathAfterBase.replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      </script>
+    </head>
+    <body></body>
+  </html>

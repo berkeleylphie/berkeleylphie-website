@@ -56,6 +56,18 @@ function displayName(row: Pick<MemberProfileRow, 'first_name' | 'last_name' | 'p
   return row.preferred_name?.trim() || `${row.first_name} ${row.last_name}`.trim();
 }
 
+const PLEDGE_CLASS_SEASON_ORDER: Record<string, number> = { spring: 0, summer: 1, fall: 2, winter: 3 };
+
+// Turns "Fall 2023" into a number that sorts chronologically (oldest
+// first). Pledge classes with no year/season we can parse sort last,
+// rather than throwing off everyone else's order.
+function pledgeClassSortKey(pledgeClass: string): number {
+  const match = pledgeClass.match(/(spring|summer|fall|winter)\s*(\d{4})/i);
+  if (!match) return Infinity;
+  const [, season, yearStr] = match;
+  return parseInt(yearStr, 10) * 4 + (PLEDGE_CLASS_SEASON_ORDER[season.toLowerCase()] ?? 0);
+}
+
 export function photoUrl(photoPath: string | null) {
   if (!photoPath) return '';
   return supabase.storage.from('member-photos').getPublicUrl(photoPath).data.publicUrl;
@@ -134,6 +146,12 @@ export async function fetchMemberDirectory(): Promise<MemberDirectory> {
     if (person.category === 'alumni') alumni.push(person);
     else brothers.push(person);
   }
+
+  // Oldest pledge class first, alphabetical by name within the same class.
+  brothers.sort((a, b) => {
+    const classDiff = pledgeClassSortKey(a.year) - pledgeClassSortKey(b.year);
+    return classDiff !== 0 ? classDiff : a.name.localeCompare(b.name);
+  });
 
   const cabinet: DisplayPerson[] = [];
   const chairs: DisplayPerson[] = [];
